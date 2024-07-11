@@ -1,9 +1,11 @@
+package task;
+
 public class Task {
 
-    int id;
+    public int id;
     String name;
     String description;
-    Status status;
+    public Status status;
 
     public Task(String name, String description, Status status) {
         this.name = name;
