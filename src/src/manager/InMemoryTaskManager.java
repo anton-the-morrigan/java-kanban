@@ -1,6 +1,10 @@
-package manager;
+package src.manager;
 
-import task.*;
+import src.task.Epic;
+import src.task.Status;
+import src.task.Subtask;
+import src.task.Task;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -9,9 +13,9 @@ public class InMemoryTaskManager implements TaskManager {
     HistoryManager historyManager;
 
     int nextId = 1;
-    static HashMap<Integer, Task> tasks;
-    static HashMap<Integer, Epic> epics;
-    static HashMap<Integer, Subtask> subtasks;
+    public static HashMap<Integer, Task> tasks;
+    public static HashMap<Integer, Epic> epics;
+    public static HashMap<Integer, Subtask> subtasks;
 
     public InMemoryTaskManager(HistoryManager historyManager) {
         this.historyManager = historyManager;

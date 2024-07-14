@@ -1,6 +1,4 @@
-package manager;
-
-import java.util.ArrayList;
+package src.manager;
 
 public interface HistoryManager {
 

@@ -1,8 +1,8 @@
-package manager;
+package src.manager;
 
-import task.*;
-
-import java.util.HashMap;
+import src.task.Epic;
+import src.task.Subtask;
+import src.task.Task;
 
 public interface TaskManager {
     void showAllTasks();

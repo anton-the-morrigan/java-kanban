@@ -1,10 +1,10 @@
-package manager;
+package src.manager;
 
 import java.util.ArrayList;
 
 public class InMemoryHistoryManager implements HistoryManager {
 
-    static ArrayList<Integer> history = new ArrayList<>();
+    public static ArrayList<Integer> history = new ArrayList<>();
     int recentItemsSize = 10;
 
     @Override
@@ -33,7 +33,7 @@ public class InMemoryHistoryManager implements HistoryManager {
     @Override
     public void deleteFromHistory(int id) {
         if (history.contains(id)) {
-            history.remove(Integer.valueOf(id));
+            history.removeIf(item -> item.equals(id));
         }
     }
 

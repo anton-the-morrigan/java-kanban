@@ -1,4 +1,4 @@
-package manager;
+package src.manager;
 
 public class Managers {
     public static TaskManager getDefaults(HistoryManager historyManager) {

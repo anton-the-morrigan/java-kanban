@@ -1,12 +1,10 @@
 package test;
 
-import task.*;
-import manager.InMemoryHistoryManager;
-import manager.InMemoryTaskManager;
+import src.task.*;
+import src.manager.InMemoryHistoryManager;
+import src.manager.InMemoryTaskManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-
 
 class InMemoryTaskManagerTest {
     InMemoryHistoryManager historyManager = new InMemoryHistoryManager();
@@ -45,6 +43,9 @@ class InMemoryTaskManagerTest {
 
         Task testTask10 = new Task("Отдохнуть", "Поиграть в какую-нибудь видеоигру", Status.NEW);
         taskManager.createTask(testTask10);
+        Assertions.assertEquals(testTask10, taskManager.getTasks().get(10));
+        Assertions.assertEquals(testEpic1, taskManager.getEpics().get(1));
+        Assertions.assertEquals(testSubtask5, taskManager.getSubtasks().get(5));
 
         int taskCount = taskManager.getTasks().size() + taskManager.getEpics().size()  + taskManager.getSubtasks().size();
         Assertions.assertEquals(10, taskCount);
