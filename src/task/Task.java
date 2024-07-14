@@ -18,4 +18,9 @@ public class Task {
         return "name='" + name + "', description='" + description + "', status='" + status + "'";
     }
 
+    @Override
+    public int hashCode() {
+        return id;
+    }
+
 }
