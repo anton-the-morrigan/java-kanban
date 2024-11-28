@@ -44,11 +44,11 @@ class InMemoryTaskManagerTest {
         Task testEpic10 = new Epic("Отдохнуть", "Найти способ отдохнуть", Status.NEW);
         taskManager.createTask(testEpic10);
 
-        Assertions.assertEquals(testEpic10, taskManager.getTasks().get(10));
-        Assertions.assertEquals(testEpic1, taskManager.getEpics().get(1));
-        Assertions.assertEquals(testSubtask5, taskManager.getSubtasks().get(5));
+        Assertions.assertEquals(testEpic10, InMemoryTaskManager.getTasks().get(10));
+        Assertions.assertEquals(testEpic1, InMemoryTaskManager.getEpics().get(1));
+        Assertions.assertEquals(testSubtask5, InMemoryTaskManager.getSubtasks().get(5));
 
-        int taskCount = taskManager.getTasks().size() + taskManager.getEpics().size()  + taskManager.getSubtasks().size();
+        int taskCount = InMemoryTaskManager.getTasks().size() + InMemoryTaskManager.getEpics().size()  + InMemoryTaskManager.getSubtasks().size();
         Assertions.assertEquals(10, taskCount);
     }
 
@@ -69,15 +69,15 @@ class InMemoryTaskManagerTest {
         taskManager.createTask(testSubtask4);
 
         taskManager.deleteTask(1);
-        taskCount = taskManager.getTasks().size() + taskManager.getEpics().size() + taskManager.getSubtasks().size();
+        taskCount = InMemoryTaskManager.getTasks().size() + InMemoryTaskManager.getEpics().size() + InMemoryTaskManager.getSubtasks().size();
         Assertions.assertEquals(3, taskCount);
 
         taskManager.deleteTask(4);
-        taskCount = taskManager.getTasks().size() + taskManager.getEpics().size() + taskManager.getSubtasks().size();
+        taskCount = InMemoryTaskManager.getTasks().size() + InMemoryTaskManager.getEpics().size() + InMemoryTaskManager.getSubtasks().size();
         Assertions.assertEquals(2, taskCount);
 
         taskManager.deleteTask(2);
-        taskCount = taskManager.getTasks().size() + taskManager.getEpics().size() + taskManager.getSubtasks().size();
+        taskCount = InMemoryTaskManager.getTasks().size() + InMemoryTaskManager.getEpics().size() + InMemoryTaskManager.getSubtasks().size();
         Assertions.assertEquals(0, taskCount);
 
 
@@ -103,9 +103,9 @@ class InMemoryTaskManagerTest {
         taskManager.updateTask(2, testUpdatedEpic);
         taskManager.updateTask(3, testUpdatedSubtask);
 
-        Assertions.assertEquals(taskManager.getTasks().get(1), testUpdatedTask);
-        Assertions.assertEquals(taskManager.getEpics().get(2), testUpdatedEpic);
-        Assertions.assertEquals(taskManager.getSubtasks().get(3), testUpdatedSubtask);
+        Assertions.assertEquals(InMemoryTaskManager.getTasks().get(1), testUpdatedTask);
+        Assertions.assertEquals(InMemoryTaskManager.getEpics().get(2), testUpdatedEpic);
+        Assertions.assertEquals(InMemoryTaskManager.getSubtasks().get(3), testUpdatedSubtask);
 
     }
 
@@ -122,7 +122,7 @@ class InMemoryTaskManagerTest {
 
         taskManager.deleteAllTasks();
 
-        int taskCount = taskManager.getTasks().size() + taskManager.getEpics().size()  + taskManager.getSubtasks().size();
+        int taskCount = InMemoryTaskManager.getTasks().size() + InMemoryTaskManager.getEpics().size()  + InMemoryTaskManager.getSubtasks().size();
 
         Assertions.assertEquals(0, taskCount);
     }
