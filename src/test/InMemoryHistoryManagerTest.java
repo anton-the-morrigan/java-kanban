@@ -33,12 +33,12 @@ class InMemoryHistoryManagerTest {
         taskManager.findTask(1);
         taskManager.findTask(2);
 
-        Assertions.assertEquals(2, historyManager.history.size());
+        Assertions.assertEquals(2, InMemoryHistoryManager.history.size());
 
         taskManager.deleteTask(2);
-        Assertions.assertEquals(1, historyManager.history.size());
+        Assertions.assertEquals(1, InMemoryHistoryManager.history.size());
 
         taskManager.deleteAllTasks();
-        Assertions.assertEquals(0, historyManager.history.size());
+        Assertions.assertEquals(0, InMemoryHistoryManager.history.size());
     }
 }
