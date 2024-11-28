@@ -41,9 +41,10 @@ class InMemoryTaskManagerTest {
         Task testTask9 = new Task("Прогуляться", "Сходить погулять в парк", Status.NEW);
         taskManager.createTask(testTask9);
 
-        Task testTask10 = new Task("Отдохнуть", "Поиграть в какую-нибудь видеоигру", Status.NEW);
-        taskManager.createTask(testTask10);
-        Assertions.assertEquals(testTask10, taskManager.getTasks().get(10));
+        Task testEpic10 = new Epic("Отдохнуть", "Найти способ отдохнуть", Status.NEW);
+        taskManager.createTask(testEpic10);
+
+        Assertions.assertEquals(testEpic10, taskManager.getTasks().get(10));
         Assertions.assertEquals(testEpic1, taskManager.getEpics().get(1));
         Assertions.assertEquals(testSubtask5, taskManager.getSubtasks().get(5));
 
@@ -85,7 +86,7 @@ class InMemoryTaskManagerTest {
     @Test
     public void updateTask() {
 
-        Task testTask1 = new Task("Не сдохнуть", "Сдать спринт 4", Status.DONE);
+        Task testTask1 = new Task("Не сдохнуть", "Сдать спринт n", Status.DONE);
         taskManager.createTask(testTask1);
 
         Epic testEpic2 = new Epic("Забота", "Позаботиться о кошке", Status.NEW);
@@ -94,7 +95,7 @@ class InMemoryTaskManagerTest {
         Subtask testSubtask3 = new Subtask("Мяукнуть", "Мяукнуть на кошку", Status.NEW, 2);
         taskManager.createTask(testSubtask3);
 
-        Task testUpdatedTask = new Task("Не сдохнуть", "Сдать спринт 5", Status.NEW);
+        Task testUpdatedTask = new Task("Не сдохнуть", "Сдать спринт n+1", Status.NEW);
         Epic testUpdatedEpic = new Epic("Досуг", "Провести время с кошкой", Status.NEW);
         Subtask testUpdatedSubtask = new Subtask("Поиграть", "Поиграть с кошкой", Status.DONE, 2);
 
