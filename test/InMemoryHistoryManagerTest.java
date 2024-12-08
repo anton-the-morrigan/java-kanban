@@ -12,10 +12,10 @@ class InMemoryHistoryManagerTest {
 
     @Test
     void getHistory() {
-        Task testTask1 = new Task("Прогуляться", "Сходить погулять в парк", Status.NEW);
+        Task testTask1 = new Task("Тестовый таск 1", "Выполнить тестовый таск 1", Status.NEW);
         taskManager.createTask(testTask1);
 
-        Task testTask2 = new Task("Отдохнуть", "Поиграть в какую-нибудь видеоигру", Status.NEW);
+        Task testTask2 = new Task("Тестовый таск 2", "Выполнить тестовый таск 2"", Status.NEW);
         taskManager.createTask(testTask2);
 
         taskManager.findTask(1);
