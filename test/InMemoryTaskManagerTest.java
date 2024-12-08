@@ -14,34 +14,34 @@ class InMemoryTaskManagerTest {
     @Test
     public void createTask() {
 
-        Epic testEpic1 = new Epic("Забота", "Позаботиться о кошке", Status.NEW);
+        Epic testEpic1 = new Epic("Тестовый эпик 1", "Выполнить все сабтаски тестового эпика 1", Status.NEW);
         taskManager.createTask(testEpic1);
 
-        Subtask testSubtask2 = new Subtask("Мяукнуть", "Мяукнуть на кошку", Status.NEW, 1);
+        Subtask testSubtask2 = new Subtask("Тестовый сабтаск 2", "Выполнить тестовый сабтаск 2", Status.NEW, 1);
         taskManager.createTask(testSubtask2);
 
-        Subtask testSubtask3 = new Subtask("Муркнуть", "Муркнуть на кошку", Status.NEW, 1);
+        Subtask testSubtask3 = new Subtask("Тестовый сабтаск 3", "Выполнить тестовый сабтаск 3", Status.NEW, 1);
         taskManager.createTask(testSubtask3);
 
-        Subtask testSubtask4 = new Subtask("Погладить", "Погладить кошку по головушке", Status.NEW, 1);
+        Subtask testSubtask4 = new Subtask("Тестовый сабтаск 4", "Выполнить тестовый сабтаск 4", Status.NEW, 1);
         taskManager.createTask(testSubtask4);
 
-        Subtask testSubtask5 = new Subtask("Почесать", "Почесать кошку за ушком", Status.NEW, 1);
+        Subtask testSubtask5 = new Subtask("Тестовый сабтаск 5", "Выполнить тестовый сабтаск 5", Status.NEW, 1);
         taskManager.createTask(testSubtask5);
 
-        Epic testEpic6 = new Epic("Выжить", "Пережить сегодняшний день", Status.NEW);
+        Epic testEpic6 = new Epic("Тестовый эпик 2", "Выполнить все сабтаски тестового эпика 2", Status.NEW);
         taskManager.createTask(testEpic6);
 
-        Subtask testSubtask7 = new Subtask("Поесть", "Поесть сегодня еду", Status.NEW, 6);
+        Subtask testSubtask7 = new Subtask("Тестовый сабтаск 7", "Выполнить тестовый сабтаск 7", Status.NEW, 6);
         taskManager.createTask(testSubtask7);
 
-        Subtask testSubtask8 = new Subtask("Поспать", "Поспать сегодня достаточное время", Status.NEW, 6);
+        Subtask testSubtask8 = new Subtask("Тестовый сабтаск 8", "Выполнить тестовый сабтаск 8", Status.NEW, 6);
         taskManager.createTask(testSubtask8);
 
-        Task testTask9 = new Task("Прогуляться", "Сходить погулять в парк", Status.NEW);
+        Task testTask9 = new Task("Тестовый таск 9", "Выполнить тестовый таск 9", Status.NEW);
         taskManager.createTask(testTask9);
 
-        Task testEpic10 = new Epic("Отдохнуть", "Найти способ отдохнуть", Status.NEW);
+        Task testEpic10 = new Epic("Тестовый эпик 10", "Выполнить все сабтаски тестового эпика 10", Status.NEW);
         taskManager.createTask(testEpic10);
 
         Assertions.assertEquals(testEpic10, InMemoryTaskManager.getTasks().get(10));
@@ -56,16 +56,16 @@ class InMemoryTaskManagerTest {
     public void deleteTask() {
         int taskCount;
 
-        Task testTask1 = new Task("Отдохнуть", "Поиграть в какую-нибудь видеоигру", Status.NEW);
+        Task testTask1 = new Task("Тестовый таск 1", "Выполнить тестовый таск 1", Status.NEW);
         taskManager.createTask(testTask1);
 
-        Epic testEpic2 = new Epic("Выжить", "Пережить сегодняшний день", Status.NEW);
+        Epic testEpic2 = new Epic("Тестовый эпик 2", "Выполнить все сабтаски тестового эпика 2", Status.NEW);
         taskManager.createTask(testEpic2);
 
-        Subtask testSubtask3 = new Subtask("Поесть", "Поесть сегодня еду", Status.NEW, 2);
+        Subtask testSubtask3 = new Subtask("Тестовый сабтаск 3", "Выполнить тестовый сабтаск 3", Status.NEW, 2);
         taskManager.createTask(testSubtask3);
 
-        Subtask testSubtask4 = new Subtask("Поспать", "Поспать сегодня достаточное время", Status.NEW, 2);
+        Subtask testSubtask4 = new Subtask("Тестовый сабтаск 4", "Выполнить тестовый сабтаск 4", Status.NEW, 2);
         taskManager.createTask(testSubtask4);
 
         taskManager.deleteTask(1);
@@ -86,18 +86,18 @@ class InMemoryTaskManagerTest {
     @Test
     public void updateTask() {
 
-        Task testTask1 = new Task("Не сдохнуть", "Сдать спринт n", Status.DONE);
+        Task testTask1 = new Task("Тестовый таск 1", "Выполнить тестовый таск 1", Status.DONE);
         taskManager.createTask(testTask1);
 
-        Epic testEpic2 = new Epic("Забота", "Позаботиться о кошке", Status.NEW);
+        Epic testEpic2 = new Epic("Тестовый эпик 2", "Выполнить все сабтаски тестового эпика 2", Status.NEW);
         taskManager.createTask(testEpic2);
 
-        Subtask testSubtask3 = new Subtask("Мяукнуть", "Мяукнуть на кошку", Status.NEW, 2);
+        Subtask testSubtask3 = new Subtask("Тестовый сабтаск 3", "Выполнить тестовый сабтаск 3", Status.NEW, 2);
         taskManager.createTask(testSubtask3);
 
-        Task testUpdatedTask = new Task("Не сдохнуть", "Сдать спринт n+1", Status.NEW);
-        Epic testUpdatedEpic = new Epic("Досуг", "Провести время с кошкой", Status.NEW);
-        Subtask testUpdatedSubtask = new Subtask("Поиграть", "Поиграть с кошкой", Status.DONE, 2);
+        Task testUpdatedTask = new Task("Обновлённый тестовый таск 1", "Выполнить обновлённый тестовый таск 1", Status.NEW);
+        Epic testUpdatedEpic = new Epic("Обновлённый тестовый эпик 2", "Выполнить все сабтаски обновлённого тестового эпика 2", Status.NEW);
+        Subtask testUpdatedSubtask = new Subtask("Обновлённый тестовый сабтаск 3", "Выполнить обновлённый тестовый сабтаск 3", Status.DONE, 2);
 
         taskManager.updateTask(1, testUpdatedTask);
         taskManager.updateTask(2, testUpdatedEpic);
@@ -111,13 +111,13 @@ class InMemoryTaskManagerTest {
 
     @Test
     public void deleteAllTask() {
-        Epic testEpic1 = new Epic("Выжить", "Пережить сегодняшний день", Status.NEW);
+        Epic testEpic1 = new Epic("Тестовый эпик 1", "Выполнить все сабтаски тестового эпика 1", Status.NEW);
         taskManager.createTask(testEpic1);
 
-        Subtask testSubtask2 = new Subtask("Поесть", "Поесть сегодня еду", Status.NEW, 1);
+        Subtask testSubtask2 = new Subtask("Тестовый сабтаск 2", "Выполнить тестовый сабтаск 2", Status.NEW, 1);
         taskManager.createTask(testSubtask2);
 
-        Subtask testSubtask3 = new Subtask("Поспать", "Поспать сегодня достаточное время", Status.NEW, 1);
+        Subtask testSubtask3 = new Subtask("Тестовый сабтаск 3", "Выполнить тестовый сабтаск 3", Status.NEW, 1);
         taskManager.createTask(testSubtask3);
 
         taskManager.deleteAllTasks();
