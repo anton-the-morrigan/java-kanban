@@ -1,11 +1,11 @@
 package src.manager;
 
-import java.util.Set;
-import java.util.LinkedHashSet;
+import java.util.ArrayList;
 
 public class InMemoryHistoryManager implements HistoryManager {
 
-    public static Set<Integer> history = new LinkedHashSet<>();
+    public static ArrayList<Integer> history = new ArrayList<>();
+    int recentItemsSize = 10;
 
     @Override
     public void getHistory() {
@@ -22,7 +22,12 @@ public class InMemoryHistoryManager implements HistoryManager {
 
     @Override
     public void addToHistory(int id) {
-        history.add(id);
+        if (history.size() < recentItemsSize) {
+            history.add(id);
+        } else {
+            history.removeFirst();
+            history.add(id);
+        }
     }
 
     @Override
@@ -32,7 +37,7 @@ public class InMemoryHistoryManager implements HistoryManager {
         }
     }
 
-    public static Set<Integer> getHistoryArray() {
+    public static ArrayList<Integer> getHistoryArray() {
         return history;
     }
 }

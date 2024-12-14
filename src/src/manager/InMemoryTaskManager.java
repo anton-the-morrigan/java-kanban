@@ -101,7 +101,7 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     @Override
-    public void findTask(int id) {
+    public void findTask(int id) { //добавить addToHistory
         if (tasks.containsKey(id)) {
             System.out.println(tasks.get(id));
             historyManager.addToHistory(id);
