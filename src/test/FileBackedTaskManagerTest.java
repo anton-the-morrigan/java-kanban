@@ -1,18 +1,27 @@
 package test;
 
-import src.task.*;
-import src.manager.InMemoryHistoryManager;
-import src.manager.InMemoryTaskManager;
+import task.*;
+import manager.InMemoryHistoryManager;
+import manager.FileBackedTaskManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class InMemoryTaskManagerTest {
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+
+
+class FileBackedTaskManagerTest {
     InMemoryHistoryManager historyManager = new InMemoryHistoryManager();
-    InMemoryTaskManager taskManager = new InMemoryTaskManager(historyManager);
+
 
 
     @Test
-    public void createTask() {
+    public void createTask() throws IOException {
+
+        File file = Files.createTempFile("tasks", ".csv").toFile();
+        file.deleteOnExit();
+        FileBackedTaskManager taskManager = new FileBackedTaskManager(historyManager, file);
 
         Epic testEpic1 = new Epic("Тестовый эпик 1", "Выполнить все сабтаски тестового эпика 1", Status.NEW);
         taskManager.createTask(testEpic1);
@@ -44,17 +53,21 @@ class InMemoryTaskManagerTest {
         Task testEpic10 = new Epic("Тестовый эпик 10", "Выполнить все сабтаски тестового эпика 10", Status.NEW);
         taskManager.createTask(testEpic10);
 
-        Assertions.assertEquals(testEpic10, InMemoryTaskManager.getTasks().get(10));
-        Assertions.assertEquals(testEpic1, InMemoryTaskManager.getEpics().get(1));
-        Assertions.assertEquals(testSubtask5, InMemoryTaskManager.getSubtasks().get(5));
+        Assertions.assertEquals(testEpic10, FileBackedTaskManager.getTasks().get(10));
+        Assertions.assertEquals(testEpic1, FileBackedTaskManager.getEpics().get(1));
+        Assertions.assertEquals(testSubtask5, FileBackedTaskManager.getSubtasks().get(5));
 
-        int taskCount = InMemoryTaskManager.getTasks().size() + InMemoryTaskManager.getEpics().size()  + InMemoryTaskManager.getSubtasks().size();
+        int taskCount = FileBackedTaskManager.getTasks().size() + FileBackedTaskManager.getEpics().size()  + FileBackedTaskManager.getSubtasks().size();
         Assertions.assertEquals(10, taskCount);
     }
 
     @Test
-    public void deleteTask() {
+    public void deleteTask() throws IOException {
         int taskCount;
+
+        File file = Files.createTempFile("tasks", ".csv").toFile();
+        file.deleteOnExit();
+        FileBackedTaskManager taskManager = new FileBackedTaskManager(historyManager, file);
 
         Task testTask1 = new Task("Тестовый таск 1", "Выполнить тестовый таск 1", Status.NEW);
         taskManager.createTask(testTask1);
@@ -69,22 +82,26 @@ class InMemoryTaskManagerTest {
         taskManager.createTask(testSubtask4);
 
         taskManager.deleteTask(1);
-        taskCount = InMemoryTaskManager.getTasks().size() + InMemoryTaskManager.getEpics().size() + InMemoryTaskManager.getSubtasks().size();
+        taskCount = FileBackedTaskManager.getTasks().size() + FileBackedTaskManager.getEpics().size() + FileBackedTaskManager.getSubtasks().size();
         Assertions.assertEquals(3, taskCount);
 
         taskManager.deleteTask(4);
-        taskCount = InMemoryTaskManager.getTasks().size() + InMemoryTaskManager.getEpics().size() + InMemoryTaskManager.getSubtasks().size();
+        taskCount = FileBackedTaskManager.getTasks().size() + FileBackedTaskManager.getEpics().size() + FileBackedTaskManager.getSubtasks().size();
         Assertions.assertEquals(2, taskCount);
 
         taskManager.deleteTask(2);
-        taskCount = InMemoryTaskManager.getTasks().size() + InMemoryTaskManager.getEpics().size() + InMemoryTaskManager.getSubtasks().size();
+        taskCount = FileBackedTaskManager.getTasks().size() + FileBackedTaskManager.getEpics().size() + FileBackedTaskManager.getSubtasks().size();
         Assertions.assertEquals(0, taskCount);
 
 
     }
 
     @Test
-    public void updateTask() {
+    public void updateTask() throws IOException {
+
+        File file = Files.createTempFile("tasks", ".csv").toFile();
+        file.deleteOnExit();
+        FileBackedTaskManager taskManager = new FileBackedTaskManager(historyManager, file);
 
         Task testTask1 = new Task("Тестовый таск 1", "Выполнить тестовый таск 1", Status.DONE);
         taskManager.createTask(testTask1);
@@ -103,14 +120,19 @@ class InMemoryTaskManagerTest {
         taskManager.updateTask(2, testUpdatedEpic);
         taskManager.updateTask(3, testUpdatedSubtask);
 
-        Assertions.assertEquals(InMemoryTaskManager.getTasks().get(1), testUpdatedTask);
-        Assertions.assertEquals(InMemoryTaskManager.getEpics().get(2), testUpdatedEpic);
-        Assertions.assertEquals(InMemoryTaskManager.getSubtasks().get(3), testUpdatedSubtask);
+        Assertions.assertEquals(FileBackedTaskManager.getTasks().get(1), testUpdatedTask);
+        Assertions.assertEquals(FileBackedTaskManager.getEpics().get(2), testUpdatedEpic);
+        Assertions.assertEquals(FileBackedTaskManager.getSubtasks().get(3), testUpdatedSubtask);
 
     }
 
     @Test
-    public void deleteAllTask() {
+    public void deleteAllTask() throws IOException {
+
+        File file = Files.createTempFile("tasks", ".csv").toFile();
+        file.deleteOnExit();
+        FileBackedTaskManager taskManager = new FileBackedTaskManager(historyManager, file);
+
         Epic testEpic1 = new Epic("Тестовый эпик 1", "Выполнить все сабтаски тестового эпика 1", Status.NEW);
         taskManager.createTask(testEpic1);
 
@@ -122,7 +144,7 @@ class InMemoryTaskManagerTest {
 
         taskManager.deleteAllTasks();
 
-        int taskCount = InMemoryTaskManager.getTasks().size() + InMemoryTaskManager.getEpics().size()  + InMemoryTaskManager.getSubtasks().size();
+        int taskCount = FileBackedTaskManager.getTasks().size() + FileBackedTaskManager.getEpics().size()  + FileBackedTaskManager.getSubtasks().size();
 
         Assertions.assertEquals(0, taskCount);
     }
