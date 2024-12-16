@@ -1,10 +1,10 @@
-package src.task;
+package task;
 
 public class Task {
 
     public int id;
-    String name;
-    String description;
+    public String name;
+    public String description;
     public Status status;
 
     public Task(String name, String description, Status status) {

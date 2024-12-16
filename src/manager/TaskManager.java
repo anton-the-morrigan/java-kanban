@@ -1,8 +1,8 @@
-package src.manager;
+package manager;
 
-import src.task.Epic;
-import src.task.Subtask;
-import src.task.Task;
+import task.Epic;
+import task.Subtask;
+import task.Task;
 
 public interface TaskManager {
     void showAllTasks();
