@@ -87,23 +87,27 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
     }
 
     public void saveToFile() {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder saveText = new StringBuilder();
         try {
-            sb.append("id,type,name,status,description,epic").append(System.lineSeparator());
+            String head = "id,type,name,status,description,epic";
+            saveText.append(head).append("\n");
 
             for (Task task : InMemoryTaskManager.tasks.values()) {
-                sb.append(task.id).append(",").append("TASK").append(",").append(task.name).append(",").append(task.status).append(",").append(task.description).append("\n");
+                String taskLine = String.format("%s" + "," + "%s" + "," + "%s" + "," + "%s" + "," + "%s" + "\n", task.id, "TASK", task.name, task.status, task.description);
+                saveText.append(taskLine);
             }
 
             for (Epic epic : InMemoryTaskManager.epics.values()) {
-                sb.append(epic.id).append(",").append("EPIC").append(",").append(epic.name).append(",").append(epic.status).append(",").append(epic.description).append("\n");
+                String epicLine = String.format("%s" + "," + "%s" + "," + "%s" + "," + "%s" + "," + "%s" + "\n", epic.id, "EPIC", epic.name, epic.status, epic.description);
+                saveText.append(epicLine);
             }
 
             for (Subtask subtask : InMemoryTaskManager.subtasks.values()) {
-                sb.append(subtask.id).append(",").append("SUBTASK").append(",").append(subtask.name).append(",").append(subtask.status).append(",").append(subtask.description).append(",").append(subtask.epicId).append("\n");
+                String subtaskLine = String.format("%s" + "," + "%s" + "," + "%s" + "," + "%s" + "," + "%s" + "," + "%s" + "\n", subtask.id, "SUBTASK", subtask.name, subtask.status, subtask.description, subtask.epicId);
+                saveText.append(subtaskLine);
             }
+            Files.writeString(file.toPath(), saveText.toString());
 
-            Files.writeString(file.toPath(), sb.toString());
         } catch (IOException e) {
             System.out.println("Произошла ошибка при сохранении файла");
         }
