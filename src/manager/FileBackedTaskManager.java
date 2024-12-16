@@ -93,19 +93,20 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
             saveText.append(head).append("\n");
 
             for (Task task : InMemoryTaskManager.tasks.values()) {
-                String taskLine = String.format("%s" + "," + "%s" + "," + "%s" + "," + "%s" + "," + "%s" + "\n", task.id, "TASK", task.name, task.status, task.description);
+                String taskLine = String.format("%s,%s,%s,%s,%s\n", task.id, "TASK", task.name, task.status, task.description);
                 saveText.append(taskLine);
             }
 
             for (Epic epic : InMemoryTaskManager.epics.values()) {
-                String epicLine = String.format("%s" + "," + "%s" + "," + "%s" + "," + "%s" + "," + "%s" + "\n", epic.id, "EPIC", epic.name, epic.status, epic.description);
+                String epicLine = String.format("%s,%s,%s,%s,%s\n", epic.id, "EPIC", epic.name, epic.status, epic.description);
                 saveText.append(epicLine);
             }
 
             for (Subtask subtask : InMemoryTaskManager.subtasks.values()) {
-                String subtaskLine = String.format("%s" + "," + "%s" + "," + "%s" + "," + "%s" + "," + "%s" + "," + "%s" + "\n", subtask.id, "SUBTASK", subtask.name, subtask.status, subtask.description, subtask.epicId);
+                String subtaskLine = String.format("%s,%s,%s,%s,%s,%s\n", subtask.id, "SUBTASK", subtask.name, subtask.status, subtask.description, subtask.epicId);
                 saveText.append(subtaskLine);
             }
+
             Files.writeString(file.toPath(), saveText.toString());
 
         } catch (IOException e) {
