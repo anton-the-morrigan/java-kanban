@@ -38,7 +38,7 @@ class FileBackedTaskManagerTest {
         Subtask testSubtask5 = new Subtask("Тестовый сабтаск 5", "Выполнить тестовый сабтаск 5", Status.NEW, 1);
         taskManager.createTask(testSubtask5);
 
-        Epic testEpic6 = new Epic("Тестовый эпик 2", "Выполнить все сабтаски тестового эпика 2", Status.NEW);
+        Epic testEpic6 = new Epic("Тестовый эпик 6", "Выполнить все сабтаски тестового эпика 6", Status.NEW);
         taskManager.createTask(testEpic6);
 
         Subtask testSubtask7 = new Subtask("Тестовый сабтаск 7", "Выполнить тестовый сабтаск 7", Status.NEW, 6);
