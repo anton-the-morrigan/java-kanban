@@ -29,8 +29,8 @@ public class Task {
         this.status = status;
         this.duration = duration;
         this.startTime = startTime;
-        if(startTime != null) {
-            if(duration == null) {
+        if (startTime != null) {
+            if (duration == null) {
                 throw new IllegalArgumentException("При указании startTime, нужно указать duration");
             }
             this.endTime = startTime.plus(duration);
