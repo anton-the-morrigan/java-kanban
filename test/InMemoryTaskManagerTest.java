@@ -1,8 +1,8 @@
 package test;
 
-import src.task.*;
-import src.manager.InMemoryHistoryManager;
-import src.manager.InMemoryTaskManager;
+import task.*;
+import manager.InMemoryHistoryManager;
+import manager.InMemoryTaskManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -29,7 +29,7 @@ class InMemoryTaskManagerTest {
         Subtask testSubtask5 = new Subtask("Тестовый сабтаск 5", "Выполнить тестовый сабтаск 5", Status.NEW, 1);
         taskManager.createTask(testSubtask5);
 
-        Epic testEpic6 = new Epic("Тестовый эпик 2", "Выполнить все сабтаски тестового эпика 2", Status.NEW);
+        Epic testEpic6 = new Epic("Тестовый эпик 6", "Выполнить все сабтаски тестового эпика 6", Status.NEW);
         taskManager.createTask(testEpic6);
 
         Subtask testSubtask7 = new Subtask("Тестовый сабтаск 7", "Выполнить тестовый сабтаск 7", Status.NEW, 6);
@@ -48,7 +48,7 @@ class InMemoryTaskManagerTest {
         Assertions.assertEquals(testEpic1, InMemoryTaskManager.getEpics().get(1));
         Assertions.assertEquals(testSubtask5, InMemoryTaskManager.getSubtasks().get(5));
 
-        int taskCount = InMemoryTaskManager.getTasks().size() + InMemoryTaskManager.getEpics().size()  + InMemoryTaskManager.getSubtasks().size();
+        int taskCount = InMemoryTaskManager.getTasks().size() + InMemoryTaskManager.getEpics().size() + InMemoryTaskManager.getSubtasks().size();
         Assertions.assertEquals(10, taskCount);
     }
 
@@ -122,7 +122,7 @@ class InMemoryTaskManagerTest {
 
         taskManager.deleteAllTasks();
 
-        int taskCount = InMemoryTaskManager.getTasks().size() + InMemoryTaskManager.getEpics().size()  + InMemoryTaskManager.getSubtasks().size();
+        int taskCount = InMemoryTaskManager.getTasks().size() + InMemoryTaskManager.getEpics().size() + InMemoryTaskManager.getSubtasks().size();
 
         Assertions.assertEquals(0, taskCount);
     }
