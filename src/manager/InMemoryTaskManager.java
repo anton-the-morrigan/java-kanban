@@ -211,7 +211,7 @@ public class InMemoryTaskManager implements TaskManager {
             System.out.println(subtasks.get(id));
             historyManager.addToHistory(id);
         } else {
-            System.out.println("Задача с данным ID не найдена");
+            System.out.printf("Задача с ID %d не найдена%n", id);
         }
     }
 
