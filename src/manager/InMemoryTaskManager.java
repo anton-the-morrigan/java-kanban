@@ -75,13 +75,13 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     private static Task getAnyTaskById(Integer id) {
-        if(tasks.containsKey(id)) {
+        if (tasks.containsKey(id)) {
             return tasks.get(id);
         }
-        if(subtasks.containsKey(id)) {
+        if (subtasks.containsKey(id)) {
             return subtasks.get(id);
         }
-        if(epics.containsKey(id)) {
+        if (epics.containsKey(id)) {
             return epics.get(id);
         }
         return null;
@@ -108,7 +108,7 @@ public class InMemoryTaskManager implements TaskManager {
                     previousTask,
                     nextTask
             );
-            if(isSuitable) {
+            if (isSuitable) {
                 prioritizedTasks.add(newTask.id);
                 return;
             }
