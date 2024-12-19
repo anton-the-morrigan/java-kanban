@@ -118,20 +118,20 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
                 while (br.ready()) {
                     String line = br.readLine();
                     if (!line.isEmpty()) {
-                        String[] list = line.split(",");
-                        if (list[1].equals("TASK")) {
-                            Task task = new Task(list[2], list[3], Status.valueOf(list[4]));
-                            task.id = Integer.parseInt(list[0]);
+                        String[] loadDataList = line.split(",");
+                        if (loadDataList[1].equals("TASK")) {
+                            Task task = new Task(loadDataList[2], loadDataList[3], Status.valueOf(loadDataList[4]));
+                            task.id = Integer.parseInt(loadDataList[0]);
                             tasks.put(task.id, task);
                             nextId++;
-                        } else if (list[1].equals("EPIC")) {
-                            Epic epic = new Epic(list[2], list[3], Status.valueOf(list[4]));
-                            epic.id = Integer.parseInt(list[0]);
+                        } else if (loadDataList[1].equals("EPIC")) {
+                            Epic epic = new Epic(loadDataList[2], loadDataList[3], Status.valueOf(loadDataList[4]));
+                            epic.id = Integer.parseInt(loadDataList[0]);
                             tasks.put(epic.id, epic);
                             nextId++;
-                        } else if (list[1].equals("SUBTASK")) {
-                            Subtask subtask = new Subtask(list[2], list[3], Status.valueOf(list[4]), Integer.parseInt(list[5]));
-                            subtask.id = Integer.parseInt(list[0]);
+                        } else if (loadDataList[1].equals("SUBTASK")) {
+                            Subtask subtask = new Subtask(loadDataList[2], loadDataList[3], Status.valueOf(loadDataList[4]), Integer.parseInt(loadDataList[5]));
+                            subtask.id = Integer.parseInt(loadDataList[0]);
                             subtasks.put(subtask.id, subtask);
                             nextId++;
                         }
